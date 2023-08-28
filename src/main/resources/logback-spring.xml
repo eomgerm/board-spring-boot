@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+  <!-- LOG 색상 변경 -->
+  <conversionRule conversionWord="clr"
+    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+
+  <property name="LOG_PATH" value="./logs"/>
+  <property name="LOG_PATTERN"
+    value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%clr(%-5level)] [%thread] %clr(%-40.40logger{36}){cyan} %clr(:){faint} %msg%n"/>
+
+  <!-- Appender -->
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+    <encoder>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+    <file>%{LOG_PATH}/info.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_PATH}/info_${type}.%d{yyyy-MM-dd}.gz</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Root Logger -->
+  <root level="INFO">
+    <appender-ref ref="console"/>
+    <appender-ref ref="INFO_LOG"/>
+  </root>
+</configuration>

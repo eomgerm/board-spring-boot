@@ -1,0 +1,42 @@
+= Auth 로그인 API
+:doctype: book
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+
+== 사용자 로그인
+
+===  성공
+
+include::{snippets}/Auth/Login/Success/http-request.adoc[]
+==== Request Body
+
+include::{snippets}/Auth/Login/Success/request-fields.adoc[]
+
+==== Example
+
+Request Body
+
+include::{snippets}/Auth/Login/Success/request-body.adoc[]
+
+Response Body
+
+include::{snippets}/Auth/Login/Success/response-body.adoc[]
+
+=== 에러
+
+==== Response Fields
+
+include::{snippets}/Auth/Login/Failure/Case1/response-fields.adoc[]
+
+==== 1. 이메일이 올바르지 않으면 로그인 실패
+
+==== Example
+
+include::{snippets}/Auth/Login/Failure/Case1/response-body.adoc[]
+
+==== 2. 비밀번호가 올바르지 않으면 로그인 실패
+
+==== Example
+
+include::{snippets}/Auth/Login/Failure/Case2/response-body.adoc[]
